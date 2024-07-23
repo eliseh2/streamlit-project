@@ -1,5 +1,5 @@
 body {
-    background-color: #f5f5f5;
+    background-color: lightblue;
     font-family: 'Arial', sans-serif;
 }
 
@@ -8,7 +8,7 @@ h1, h2 {
 }
 
 .stButton>button {
-    background-color: #4CAF50;
+    background-color: #5058ae;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -17,11 +17,15 @@ h1, h2 {
 }
 
 .stButton>button:hover {
-    background-color: #45a049;
+    background-color: #5058ae;
 }
 
 .stNumberInput>input {
     border: 2px solid #ccc;
     border-radius: 4px;
     padding: 8px;
+}
+
+.stMarkdown {
+    color: #333333;
 }
