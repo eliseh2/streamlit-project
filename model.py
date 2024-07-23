@@ -58,5 +58,5 @@ if st.button('Predict'):
 
 # Display the raw data
 st.markdown('## Raw Data')
-data = pd.read_csv('C:\\Users\\Elise\\Downloads\\processed_data.csv')
+data = pd.read_csv('processed_data.csv')
 st.write(data)
