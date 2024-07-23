@@ -1,54 +1,49 @@
 import streamlit as st
 import joblib
 import pandas as pd
+import numpy as np
 
-# Load the trained CatBoost Regressor model
-model = joblib.load('best_cb_model.pkl')
+# Load the saved models
+cb_model = joblib.load('best_cb_model.pkl')
+scaler = joblib.load('scaler.pkl')
+pca = joblib.load('pca_model.pkl')
 
-# Title of the web app
-st.title("CatBoost Regressor Deployment")
+# Define the input features in the correct order
+input_features = ['Year', 'Age', 'Total_Purchases', 'Amount', 'Ratings']
 
-# Sidebar for user input
-st.sidebar.header("User Input Parameters")
+# Define a function to preprocess input data
+def preprocess_data(year, age, total_purchases, amount, ratings):
+    input_data = pd.DataFrame({
+        'Year': [year],
+        'Age': [age],
+        'Total_Purchases': [total_purchases],
+        'Amount': [amount],
+        'Ratings': [ratings]
+    })
+    
+    # Ensure the columns are in the same order as during training
+    input_data = input_data[input_features]
+    
+    input_scaled = scaler.transform(input_data)
+    input_pca = pca.transform(input_scaled)
+    return input_pca
 
-def user_input_features():
-    Transaction_ID = st.sidebar.number_input("Transaction_ID", value=0)
-    Customer_ID = st.sidebar.number_input("Customer_ID", value=0)
-    Phone = st.sidebar.number_input("Phone", value=0)
-    Zipcode = st.sidebar.number_input("Zipcode", value=0)
-    Age = st.sidebar.slider("Age", 0, 100, 25)
-    Year = st.sidebar.number_input("Year", value=2023)
-    Total_Purchases = st.sidebar.number_input("Total_Purchases", value=0)
-    Amount = st.sidebar.number_input("Amount", value=0.0)
-    Total_Amount = st.sidebar.number_input("Total_Amount", value=0.0)
-    Ratings = st.sidebar.slider("Ratings", 1.0, 5.0, 3.0)
-    data = {
-        'Transaction_ID': Transaction_ID,
-        'Customer_ID': Customer_ID,
-        'Phone': Phone,
-        'Zipcode': Zipcode,
-        'Age': Age,
-        'Year': Year,
-        'Total_Purchases': Total_Purchases,
-        'Amount': Amount,
-        'Total_Amount': Total_Amount,
-        'Ratings': Ratings,
-    }
-    features = pd.DataFrame(data, index=[0])
-    return features
+# Streamlit user interface
+st.title('CatBoost Model Prediction App')
+st.header('Enter the details for prediction')
 
-# Store the user input data
-input_df = user_input_features()
+year = st.number_input('Year', min_value=2000, max_value=2024, value=2020)
+age = st.number_input('Age', min_value=18, max_value=100, value=30)
+total_purchases = st.number_input('Total Purchases', min_value=0, max_value=1000, value=10)
+amount = st.number_input('Amount', min_value=0.0, value=100.0)
+ratings = st.number_input('Ratings', min_value=0.0, max_value=5.0, value=4.0)
 
-# Display the input data
-st.subheader('User Input parameters')
-st.write(input_df)
+if st.button('Predict'):
+    input_data = preprocess_data(year, age, total_purchases, amount, ratings)
+    prediction = cb_model.predict(input_data)
+    st.write(f'Predicted Total Purchases: {prediction[0]}')
 
-# Make prediction using the model
-prediction = model.predict(input_df)
-
-# Display the prediction
-st.subheader('Prediction')
-st.write(prediction)
-
-st.write(f'Predicted Value: {prediction[0]}')
+# Display the raw data
+st.header('Raw Data')
+data = pd.read_csv('C:\\Users\\Elise\\Downloads\\processed_data.csv')
+st.write(data)
