@@ -29,10 +29,10 @@ body_typeArr = ['luxury%20suv' , 'hatchback' , 'sedan' , 'suv' , 'luxury%20sedan
 
 # Create form inputs
 color = colorArr.index(st.selectbox('Color', colorArr)) + 1
-owner = st.selectbox('Owner', [1, 2, 3, 4])
-fuel = st.selectbox('Fuel', [1, 2, 3])
-transmission = st.selectbox('Transmission', [1, 2])
-body_type = st.selectbox('Body Type', [1, 2, 3, 4, 5])
+owner = ownerArr.index(st.selectbox('Owner', ownerArr)) + 1
+fuel = fuelArr.index(st.selectbox('Fuel', fuelArr)) + 1
+transmission = transmissionArr.index(st.selectbox('Transmission', transmissionArr)) + 1
+body_type = body_typeArr.index(st.selectbox('Body Type', body_typeArr)) + 1
 kms_driven = st.number_input('Kms Driven', min_value=0)
 
 airbags = st.selectbox('Airbags', [True, False])
