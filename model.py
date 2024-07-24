@@ -18,8 +18,17 @@ def predict(features):
 # Streamlit app
 st.title('Car Price Prediction')
 
+# Create selection Arrays
+colorArr = ['silver' , 'white' , 'red' , 'blue' , 'brown' , 'black' , 'purple' , 'orange' , 'yellow'
+ ,'green']
+ownerArr = ['2ND' , '1ST' , '3RD' , '4TH']
+fuelArr = ['DIESEL' , 'PETROL' , 'CNG']
+transmissionArr = ['Manual' , 'Automatic']
+body_typeArr = ['luxury%20suv' , 'hatchback' , 'sedan' , 'suv' , 'luxury%20sedan']
+
+
 # Create form inputs
-color = st.selectbox('Color', [1, 2, 3, 4])
+color = colorArr.index(st.selectbox('Color', colorArr)) + 1
 owner = st.selectbox('Owner', [1, 2, 3, 4])
 fuel = st.selectbox('Fuel', [1, 2, 3])
 transmission = st.selectbox('Transmission', [1, 2])
