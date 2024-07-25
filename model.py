@@ -38,7 +38,7 @@ with col1:
     transmission = transmissionArr.index(st.selectbox('Transmission', transmissionArr)) + 1
     body_type = body_typeArr.index(st.selectbox('Body Type', body_typeArr)) + 1
     company = companyArr.index(st.selectbox('Company' , companyArr)) + 1
-    kms_driven = st.number_input('Kms Driven', min_value=0)
+    kms_driven = st.number_input('Distance Driven (Km)', min_value=0, step = 5000)
 
 with col2:
     airbags = st.selectbox('Airbags', [True, False])
