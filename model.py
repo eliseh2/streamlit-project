@@ -53,4 +53,3 @@ features = [owner, fuel, transmission, body_type, kms_driven,
 if st.button('Predict Price'):
     price = predict(features)
     st.write(f'Predicted Price: ₹{price:,.2f}')
-based on this code, can you convert the price back to india money
