@@ -46,7 +46,7 @@ with col2:
     cruise_control = st.selectbox('Cruise Control', [True, False])
     steering_mounted_controls = st.selectbox('Steering Mounted Controls', [True, False])
     sunroof_moonroof = st.selectbox('Sunroof/Moonroof', [True, False])
-    year = st.number_input('Year', min_value = 1 , max_value = 15)
+    year = st.number_input('Year', min_value = 2012 , max_value = 2022)
 
 # Prepare input features
 features = [color, owner, fuel, transmission, body_type, kms_driven,
