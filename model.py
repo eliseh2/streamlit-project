@@ -5,7 +5,7 @@ import joblib
 from sklearn.preprocessing import StandardScaler
 
 # Load the trained model
-model = joblib.load('best_linear_regression_model.pkl')
+model = joblib.load('best_catboost_regression_model.pkl')
 scaler = joblib.load('scaler.pkl')  # Assuming you have saved the scaler too
 
 # Function to make predictions
