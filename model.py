@@ -19,8 +19,6 @@ def predict(features):
 st.title('Car Price Prediction')
 
 # Create selection Arrays
-colorArr = ['silver' , 'white' , 'red' , 'blue' , 'brown' , 'black' , 'purple' , 'orange' , 'yellow'
- ,'green']
 ownerArr = ['2ND' , '1ST' , '3RD' , '4TH']
 fuelArr = ['DIESEL' , 'PETROL' , 'CNG']
 transmissionArr = ['Manual' , 'Automatic']
@@ -32,7 +30,6 @@ col1, col2 = st.columns(2)
 
 # Create form inputs
 with col1:
-    color = colorArr.index(st.selectbox('Color', colorArr)) + 1
     owner = ownerArr.index(st.selectbox('Owner', ownerArr)) + 1
     fuel = fuelArr.index(st.selectbox('Fuel', fuelArr)) + 1
     transmission = transmissionArr.index(st.selectbox('Transmission', transmissionArr)) + 1
@@ -49,7 +46,7 @@ with col2:
     year = st.number_input('Year', min_value = 2012 , max_value = 2022)
 
 # Prepare input features
-features = [color, owner, fuel, transmission, body_type, kms_driven,
+features = [owner, fuel, transmission, body_type, kms_driven,
             airbags, alloy_wheels, cruise_control, steering_mounted_controls, sunroof_moonroof, year,company]
 
 # Make prediction
