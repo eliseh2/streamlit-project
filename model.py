@@ -50,7 +50,7 @@ with col2:
 
 # Prepare input features
 features = [color, owner, fuel, transmission, body_type, kms_driven,
-            airbags, alloy_wheels, cruise_control, steering_mounted_controls, sunroof_moonroof, year]
+            airbags, alloy_wheels, cruise_control, steering_mounted_controls, sunroof_moonroof, year,company]
 
 # Make prediction
 if st.button('Predict Price'):
