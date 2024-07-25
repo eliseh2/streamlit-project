@@ -3,10 +3,6 @@ import pandas as pd
 import numpy as np
 import joblib
 from sklearn.preprocessing import StandardScaler
-import locale
-
-# Set locale to Indian
-locale.setlocale(locale.LC_ALL, 'en_IN.UTF-8')
 
 # Load the trained model
 model = joblib.load('best_catboost_regression_model.pkl')
@@ -39,7 +35,7 @@ with col1:
     transmission = transmissionArr.index(st.selectbox('Transmission', transmissionArr)) + 1
     body_type = body_typeArr.index(st.selectbox('Body Type', body_typeArr)) + 1
     company = companyArr.index(st.selectbox('Company' , companyArr)) + 1
-    kms_driven = st.number_input('Distance Driven (Km)', min_value=0, step=5000)
+    kms_driven = st.number_input('Distance Driven (Km)', min_value=0, step = 5000)
 
 with col2:
     airbags = st.selectbox('Airbags', [True, False])
@@ -47,13 +43,14 @@ with col2:
     cruise_control = st.selectbox('Cruise Control', [True, False])
     steering_mounted_controls = st.selectbox('Steering Mounted Controls', [True, False])
     sunroof_moonroof = st.selectbox('Sunroof/Moonroof', [True, False])
-    year = st.number_input('Year', min_value=2012, max_value=2022)
+    year = st.number_input('Year', min_value = 2012 , max_value = 2022)
 
 # Prepare input features
 features = [owner, fuel, transmission, body_type, kms_driven,
-            airbags, alloy_wheels, cruise_control, steering_mounted_controls, sunroof_moonroof, year, company]
+            airbags, alloy_wheels, cruise_control, steering_mounted_controls, sunroof_moonroof, year,company]
 
 # Make prediction
 if st.button('Predict Price'):
     price = predict(features)
-    st.write(f'Predicted Price: ₹{locale.currency(price, grouping=True)}')
+    st.write(f'Predicted Price: ₹{price:,.2f}')
+based on this code, can you convert the price back to india money
