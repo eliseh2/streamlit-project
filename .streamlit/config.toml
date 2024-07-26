@@ -1,4 +1,4 @@
-[Theme]
-backgroundColour = "#BCC9D5"
-textColour = "#FFFFFF"
-primaryColour = "#7997B2"
+[theme]
+backgroundColor = "#BCC9D5"
+textColor = "#FFFFFF"
+primaryColor = "#7997B2"
